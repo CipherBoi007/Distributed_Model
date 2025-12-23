@@ -1,0 +1,24 @@
+nodes:
+  - id: 1
+    ip: "192.168.1.100"
+    port: 8000
+  - id: 2
+    ip: "192.168.1.101"
+    port: 8001
+  - id: 3
+    ip: "192.168.1.102"
+    port: 8002
+
+network:
+  heartbeat_interval: 3
+  leader_timeout: 6
+  election_timeout: 5
+
+api:
+  openrouter_api_key: "${OPENROUTER_API_KEY}"
+  openrouter_base_url: "https://openrouter.ai/api/v1"
+  model: "mistralai/mixtral-8x7b-instruct"
+
+tasks:
+  max_retries: 3
+  timeout_seconds: 30
