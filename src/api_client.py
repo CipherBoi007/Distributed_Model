@@ -4,13 +4,15 @@ API client for external services (OpenRouter).
 import logging
 import requests
 import json
+import os
 from typing import Optional, Dict, Any
 
 logger = logging.getLogger(__name__)
 
 class APIClient:
     def __init__(self, api_config: Dict[str, Any]):
-        self.api_key = api_config.get('openrouter_api_key', '')
+        # Prefer explicit config value, otherwise fallback to environment
+        self.api_key = api_config.get('openrouter_api_key') or os.getenv('OPENROUTER_API_KEY', '')
         self.base_url = api_config.get('openrouter_base_url', 'https://openrouter.ai/api/v1')
         self.model = api_config.get('model', 'mistralai/mixtral-8x7b-instruct')
         self.headers = {

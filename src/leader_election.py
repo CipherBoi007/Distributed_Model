@@ -6,7 +6,7 @@ import time
 import logging
 import uuid
 import requests
-from typing import Optional
+from typing import Optional, Dict, Any, List
 from .api_client import APIClient
 
 logger = logging.getLogger(__name__)

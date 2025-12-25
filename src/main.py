@@ -21,11 +21,16 @@ from .task_executor import TaskExecutor
 from .api_client import APIClient
 
 # Configure logging
+# Ensure logs directory exists and use node env vars for more descriptive filenames
+os.makedirs('logs', exist_ok=True)
+node_id_env = os.getenv('NODE_ID', 'unknown')
+node_ip_env = os.getenv('NODE_IP', '')
+safe_ip = node_ip_env.replace('.', '_').replace(':', '-') if node_ip_env else 'unknown'
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler(f'logs/node_{os.getenv("NODE_ID", "unknown")}.log'),
+        logging.FileHandler(f'logs/node_{node_id_env}_{safe_ip}.log'),
         logging.StreamHandler()
     ]
 )
